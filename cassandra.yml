@@ -1,0 +1,20 @@
+#- name: enable cassandra repo in yum
+#  template: src=cassandra.repo.j2 dest=/etc/yum.repos.d/cassandra.repo
+
+- name: Download cassandra
+  get_url:
+    url: http://www-us.apache.org/dist/cassandra/3.0.14/apache-cassandra-3.0.14-bin.tar.gz
+    dest: /opt/cassandra
+
+
+- unarchive:
+    src: apache-cassandra-3.0.14-bin.tar.gz
+    dest: /opt/cassandra/
+
+    
+    - name: Build nginx 
+    shell: |
+      cd nginx-1.11.13
+      sudo ./configure
+      sudo make
+      sudo make install
